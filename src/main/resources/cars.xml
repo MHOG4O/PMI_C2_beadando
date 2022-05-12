@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<cars>
+    <car>
+        <plate>JRS182</plate>
+        <brand>Honda</brand>
+        <type>Jazz</type>
+        <productionYear>2004</productionYear>
+        <color>KEK</color>
+        <price>420000</price>
+    </car>
+    <car>
+        <plate>SUS222</plate>
+        <brand>Toyota</brand>
+        <type>Supra</type>
+        <productionYear>2005</productionYear>
+        <color>PIROS</color>
+        <price>8500000</price>
+    </car>
+    <car>
+        <plate>SEX666</plate>
+        <brand>Honda</brand>
+        <type>Civic</type>
+        <productionYear>2006</productionYear>
+        <color>SARGA</color>
+        <price>300000</price>
+    </car>
+    <car>
+        <plate>EDF578</plate>
+        <brand>Daihatsu</brand>
+        <type>Materia</type>
+        <productionYear>2007</productionYear>
+        <color>PIROS</color>
+        <price>40000</price>
+    </car>
+</cars>
