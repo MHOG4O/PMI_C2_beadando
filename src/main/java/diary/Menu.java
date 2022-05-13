@@ -48,7 +48,7 @@ public class Menu {
 
     private static void modifyCar(ArrayList<Car> cars) {
         Brand brand;
-        System.out.print("Adja meg a modosítani kivant auto rendszamat: ");
+        System.out.print("Adja meg a modositani kivant auto rendszamat: ");
         int choise;
         try {
             Car car = findCar(cars, scanner.next());
@@ -57,13 +57,13 @@ public class Menu {
             System.out.print("--> ");
             Scanner scanner1=new Scanner(System.in);
             while(scanner1.hasNextInt()!=true){
-                System.out.println("Ervenytelen formatum");
+                System.out.println("Ervenytelen formatum!\n");
                 scanner1=new Scanner(System.in);
             }
             choise=scanner1.nextInt();
             switch (choise){
                 case 0:break;
-                case 1:cars.set(cars.indexOf(car), new Car(inputPlate(), car.getBrand(),car.getType(), car.getProductionYear(),car.getColor(),car.getPrice()));break;
+                case 1:cars.set(cars.indexOf(car), new Car(inputPlate(cars), car.getBrand(),car.getType(), car.getProductionYear(),car.getColor(),car.getPrice()));break;
                 case 2:
                     brand=inputBrand();
                     cars.set(cars.indexOf(car), new Car(car.getPlate(), brand,inputType(brand), car.getProductionYear(),car.getColor(),car.getPrice()));break;
@@ -72,6 +72,7 @@ public class Menu {
                 case 5:cars.set(cars.indexOf(car), new Car(car.getPlate(), car.getBrand(),car.getType(), car.getProductionYear(),car.getColor(),inputPrice()));break;
                 default:System.out.println("Ilyen lehetoseg nincs!\n");modifyCar(cars);break;
             }
+            System.out.println("Sikeres modositas!\n");
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -83,11 +84,11 @@ public class Menu {
                 return car;
             }
         }
-        throw new IllegalArgumentException("Nem talalhato auto a megadott rendszammal: " + plate);
+        throw new IllegalArgumentException("Nem talalhato auto a megadott rendszammal: " + plate+"\n");
     }
 
     private static void addNewCar(ArrayList<Car> cars){
-        String plate=inputPlate();
+        String plate=inputPlate(cars);
         Brand brand=inputBrand();
         String type=inputType(brand);
         int productionYear=inputProductionYear();
@@ -97,16 +98,22 @@ public class Menu {
         System.out.println("Sikeres hozzaadas\n");
     }
 
-    private static String inputPlate() {
+    private static String inputPlate(ArrayList<Car> cars) {
         System.out.print("Adja meg a rendszamot(pl: ABC123): ");
         String plate=scanner.nextLine();
         if(plate.charAt(0)>='A' && plate.charAt(0)<='Z' && plate.charAt(1)>='A' && plate.charAt(1)<='Z' &&
                 plate.charAt(2)>='A' && plate.charAt(2)<='Z' && plate.charAt(3)>='0' && plate.charAt(3)<='9' &&
                 plate.charAt(4)>='0' && plate.charAt(4)<='9' && plate.charAt(5)>='0' && plate.charAt(5)<='9'){
+            for (Car car : cars) {
+                if (car.getPlate().equals(plate)) {
+                    System.out.println("Ilyen rendszam mar van!\n");
+                    inputPlate(cars);
+                }
+            }
             return plate;
         }else{
-            System.out.println("Ervenytelen formatum!");
-            inputPlate();
+            System.out.println("Ervenytelen formatum!\n");
+            inputPlate(cars);
         }
         return "";
     }
