@@ -12,7 +12,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Writer {
     private static void createChildElement(Document document, Element parent,
